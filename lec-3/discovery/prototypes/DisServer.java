@@ -73,10 +73,13 @@ public class DisServer {
         		}
         	}
         	if(result.size()!=0){
-        		for(Record r:result){//only return first one, need update next week
-        			res+=r.ip+" "+r.port;
-        			break;
-        		}
+        	    Random rand = new Random();
+                int  rn = rand.nextInt(result.size());
+                return result.get(rn);
+        	//	for(Record r:result){//only return first one, need update next week
+        		//	res+=r.ip+" "+r.port;
+        			//break;
+        	//	}
         	}else{res="null";}
         	out.println(res);
         }
