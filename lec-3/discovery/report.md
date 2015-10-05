@@ -9,12 +9,12 @@ If any one of the ConvServer which is used by the Proxy Server is down, the Prox
 
 A protocol specification that clearly explains the protocol used by your system. <br/>
 
-On the client side,
-(1) Use "lookup <unit1> <unit2> \n" to check the ip and port number for the convServer or ProxyServer
-(2) Then use that ip and port number to send the actual request
+On the client side,<br/>
+(1) Use "lookup <unit1> <unit2> \n" to check the ip and port number for the convServer or ProxyServer<br/>
+(2) Then use that ip and port number to send the actual request<br/>
 
-On the ConvServer and Proxy Server Side
-(1) Once the server is running, it will automatically register on the Discovery Server using "add <unit1> <unit2> <ip> <port number>"
+On the ConvServer and Proxy Server Side<br/>
+(1) Once the server is running, it will automatically register on the Discovery Server using "add <unit1> <unit2> <ip> <port number>"<br/>
 
 
 If you have extended the protocol in some way, explain how <br/>
