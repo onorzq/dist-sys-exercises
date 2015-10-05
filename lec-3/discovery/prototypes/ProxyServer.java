@@ -141,7 +141,7 @@ int index = mapUnitPair2ConvServer.get(inputUnit + outputUnit);
 
 ip = convServerIp[index];
 port = convServerPort[index];
-
+try{
 Socket socket = new Socket(ip, port);
 PrintWriter write2Socket = new PrintWriter(socket.getOutputStream(), true);
 write2Socket.println(inputUnit + " " + outputUnit + " " + inputAmount);
@@ -149,7 +149,14 @@ write2Socket.println(inputUnit + " " + outputUnit + " " + inputAmount);
 String result = convertStreamToString(socket.getInputStream());
 socket.close();
 
-return result.split("\n")[1];
+return result;
+//.split("\n")[1];
+    
+}catch(Exception e){
+    e.printStackTrace();
+    remove(thisIp,thisPort);
+    return "";
+}
 }
 
 /** convert InputStream to String
@@ -159,6 +166,7 @@ return result.split("\n")[1];
  */
 public static String convertStreamToString(InputStream is) {
 Scanner s = new Scanner(is).useDelimiter("\\A");
+//System.out.println();
 return s.hasNext() ? s.next() : "";
 }
 
@@ -215,7 +223,7 @@ out = new PrintWriter(socket.getOutputStream(), true);
 out.println("lookup in cm");
 s=in.readLine();
 System.out.println("s:"+s);
-if(!s.equalsIgnoreCase("null")){
+if(!s.equalsIgnoreCase("failure")){
 String[] temp=s.split(" ");
 convServerIp[1]=temp[0];
 convServerPort[1]=Integer.parseInt(temp[1]);
@@ -238,9 +246,9 @@ try{
 socket = new Socket("127.0.0.1", 5555);
 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 out = new PrintWriter(socket.getOutputStream(), true);
-out.println("register ft cm "+ip+" "+port);}catch(Exception e){
+out.println("add ft m "+ip+" "+port);}catch(Exception e){
 System.out.println("argument should be like:"
-+ " register { input unit } { output unit }  {My IP} {My Port}");
++ " add { input unit } { output unit }  {My IP} {My Port}");
 
 }
 }else{return false;}
@@ -250,7 +258,8 @@ return false;
 }
 return true;
 }
-
+static String thisIp="";
+static int thisPort=0;
 
 public static void main(String[] args) throws Exception {
 //check if argument length is invalid
@@ -258,14 +267,14 @@ if(args.length != 1) {
 System.err.println("Usage: java ConvServer port");
 }
 // create socket
-int port = Integer.parseInt(args[0]);
+ thisPort = Integer.parseInt(args[0]);
 InetAddress addr = InetAddress.getLocalHost();
-String ip = addr.getHostAddress();
-if(!register(ip,port)){
+ thisIp = addr.getHostAddress();
+if(!register(thisIp,thisPort)){
 System.out.println("connection error");
 System.exit(0);}
-ServerSocket serverSocket = new ServerSocket(port);
-System.err.println("Started server on port " + port);
+ServerSocket serverSocket = new ServerSocket(thisPort);
+System.err.println("Started server on port " + thisPort);
 
 // wait for connections, and process
 try {
@@ -279,7 +288,7 @@ process(clientSocket);
 }catch (IOException e) {
 e.printStackTrace();
 }finally{
-	remove(ip,port);
+	remove(thisIp,thisPort);
 }
 System.exit(0);
 }

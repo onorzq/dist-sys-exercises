@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
+import java.util.Random;
 
 public class DisServer {
 	ArrayList<Record> recordArray=new ArrayList<Record>();
@@ -44,11 +44,11 @@ public class DisServer {
         System.out.println(instruction);
         String[] temp=instruction.split(" ");
     	if(temp.length!=3&&temp.length!=5){
-    		out.println("input format should be: register { input unit } { output unit }  {My IP} {My Port}"
+    		out.println("input format should be: add { input unit } { output unit }  {My IP} {My Port}"
     				+ "\r\nor remove { My IP } { My Port}"
     				+ "\r\nor lookup {input unit} {output unit} ");
     		}
-        if(temp[0].equalsIgnoreCase("register")&&temp.length==5){//create a new record and add it into array
+        if(temp[0].equalsIgnoreCase("add")&&temp.length==5){//create a new record and add it into array
         	Record r=new Record();
         	r.from=temp[1];
         	r.to=temp[2];
@@ -57,9 +57,11 @@ public class DisServer {
         	recordArray.add(r);
         }
         if(temp[0].equalsIgnoreCase("remove")){
-        	for(Record r:recordArray){
-        		if(r.ip.equalsIgnoreCase(temp[1])&&r.port==temp[2]){
+        	for(int i=0;i<recordArray.size();i++){
+        	    Record r=recordArray.get(i);
+        		if(r.ip.equalsIgnoreCase(temp[1])&&r.port.equalsIgnoreCase(temp[2])){
         			recordArray.remove(r);
+        			i--;
         		}
         	}
         }
@@ -73,14 +75,14 @@ public class DisServer {
         		}
         	}
         	if(result.size()!=0){
-        	    Random rand = new Random();
-                int  rn = rand.nextInt(result.size());
-                return result.get(rn);
-        	//	for(Record r:result){//only return first one, need update next week
-        		//	res+=r.ip+" "+r.port;
-        			//break;
-        	//	}
-        	}else{res="null";}
+        	  //  Random rand = new Random();
+            //    int  rn = rand.nextInt(result.size());
+              //  return result.get(rn).ip+" "+result.get(rn).port;
+        		for(Record r:result){//only return first one, need update next week
+        		res+=r.ip+" "+r.port;
+        			break;
+        		}
+        	}else{res="failure";}
         	out.println(res);
         }
         

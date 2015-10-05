@@ -48,10 +48,10 @@ public class ConvServer {
     	String res="";
     	String[] arrs=userInput.split(" ");
     	if(arrs.length!=3){return res;}
-    	if(arrs[0].equalsIgnoreCase("inch")&&arrs[1].equalsIgnoreCase("cm")){
+    	if(arrs[0].equalsIgnoreCase("in")&&arrs[1].equalsIgnoreCase("cm")){
     		res=""+Double.parseDouble(arrs[2])*2.54;
     	}
-    	if(arrs[1].equalsIgnoreCase("inch")&&arrs[0].equalsIgnoreCase("cm")){
+    	if(arrs[1].equalsIgnoreCase("in")&&arrs[0].equalsIgnoreCase("cm")){
     		res=""+Double.parseDouble(arrs[2])/2.54;
     	}
     	return res;
@@ -78,9 +78,9 @@ public class ConvServer {
             Socket socket = new Socket("127.0.0.1", 5555);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             //out.println();
-            out.println("register inch cm "+ip+" "+port);}catch(Exception e){
+            out.println("add in cm "+ip+" "+port);}catch(Exception e){
                 System.out.println("argument should be like:"
-                		+ " register { input unit } { output unit }  {My IP} {My Port}");
+                		+ " add { input unit } { output unit }  {My IP} {My Port}");
             }
     }
     
