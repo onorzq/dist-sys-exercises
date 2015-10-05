@@ -19,7 +19,7 @@ On the client side,<br/>
 (2) Then use that ip and port number to send the actual request<br/>
 
 On the ConvServer and Proxy Server Side<br/>
-(1) Once the server is running, it will automatically register on the Discovery Server using "add [unit1] [unit2] [ip] [port number]" <br/>
+(1) Once the server is running, it will automatically register on the Discovery Server. You can also use "add [unit1] [unit2] 127.0.0.1 [port number]" on Discovery Server to add new server. <br/>
 
 
 If you have extended the protocol in some way, explain how <br/>
