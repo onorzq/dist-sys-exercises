@@ -15,14 +15,20 @@ A protocol specification that clearly explains the protocol used by your system.
 we can open a terminal and telnet 127.0.0.1 5555 to connect the discover server. The ip address and port number of discover server is hardcoded inside the code.<br/>
 ________________________________________________________________________________________________________________________________
 On the client side,<br/>
-(1) Use "lookup <unit1> <unit2> \n" to check the ip and port number for the convServer or ProxyServer<br/>
+(1) Use "lookup [unit1] [unit2] \n" to check the ip and port number for the convServer or ProxyServer<br/>
 (2) Then use that ip and port number to send the actual request<br/>
 
 On the ConvServer and Proxy Server Side<br/>
-(1) Once the server is running, it will automatically register on the Discovery Server using "add <unit1> <unit2> <ip> <port number>"<br/>
+(1) Once the server is running, it will automatically register on the Discovery Server using "add [unit1] [unit2] [ip] [port number]" <br/>
 
 
 If you have extended the protocol in some way, explain how <br/>
 -------------
-Even if you have not changed the protocol at all, you should fully explain how the protocol works. Assume that the reader of the document does not know anything about the discovery protocol discussed in class.
+To be Edited
 A test plan explaining what commands the TA must execute in order to compile and test your program.
+-------------
+use "javac [fileName]" to compile all the code <br/>
+(1)Launch Discovery server first using "java DisServer 5555" <br/>
+(2)Launch 3 ConvServer "java ConvServer [port number]" <br/>
+(3)Finally Launch ProxyServer (The proxy server will check all the connected ConvServer and register to the discovery server) using "java ProxyServer [port number]" <br/>
+(4) use terminal to connect to the discovery server and test
