@@ -112,7 +112,7 @@ public class ConvServer {
         }catch (IOException e) {
             System.err.println("Connection Error");
         }finally{
-        	remove(ip,port);
+        	//remove(ip,port);
         }
         System.exit(0);
     }

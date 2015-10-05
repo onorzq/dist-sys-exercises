@@ -71,7 +71,16 @@ public class DisServer {
         	for(Record r:recordArray){
         		if((r.from.equalsIgnoreCase(temp[1])&&r.to.equalsIgnoreCase(temp[2]))||
         				(r.to.equalsIgnoreCase(temp[1])&&r.from.equalsIgnoreCase(temp[2]))){
-        			result.add(r);
+        				    Socket sc = null;
+        				   try {
+        				      sc = new Socket(r.ip, Integer.parseInt(r.port));
+        				        sc.close();
+        			    result.add(r);	        
+        				   } catch(Exception e) {
+        				      e.printStackTrace();
+        				    recordArray.remove(r);
+        				       System.out.println(r.to + "have shuted down");
+        				    }
         		}
         	}
         	if(result.size()!=0){

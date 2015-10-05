@@ -211,12 +211,12 @@ public static boolean register(String ip,int port){
 		String s=in.readLine();
 		System.out.println("s:"+s);
 		boolean flag=true;
-	if(!s.equalsIgnoreCase("null")){
+	if(!s.equalsIgnoreCase("failure")){
 		String[] temp=s.split(" ");
 		convServerIp[0]=temp[0];
 		convServerPort[0]=Integer.parseInt(temp[1]);
 	}else{flag=false;}
-
+    socket.close();
 	socket = new Socket("127.0.0.1", 5555);
 	in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	out = new PrintWriter(socket.getOutputStream(), true);
@@ -228,18 +228,19 @@ public static boolean register(String ip,int port){
 		convServerIp[1]=temp[0];
 		convServerPort[1]=Integer.parseInt(temp[1]);
 	}else{flag=false;}
-
+    socket.close();
 	socket = new Socket("127.0.0.1", 5555);
 	in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	out = new PrintWriter(socket.getOutputStream(), true);
 	out.println("lookup cm m");
 	s=in.readLine();
 	System.out.println("s:"+s);
-	if(!s.equalsIgnoreCase("null")){
+	if(!s.equalsIgnoreCase("failure")){
 	String[] temp=s.split(" ");
 	convServerIp[2]=temp[0];
 	convServerPort[2]=Integer.parseInt(temp[1]);
 	}else{flag=false;}
+	socket.close();
 	//next step: verify all server
 	if(flag){
 	try{
@@ -278,16 +279,16 @@ public static boolean register(String ip,int port){
 	
 	// wait for connections, and process
 	try {
-	while(true) {
+    	while(true) {
 	// a "blocking" call which waits until a connection is requested
-	Socket clientSocket = serverSocket.accept();
-	System.err.println("\nAccepted connection from client");
-	process(clientSocket);
-	}
-	
+	        Socket clientSocket = serverSocket.accept();
+	        System.err.println("\nAccepted connection from client");
+	        process(clientSocket);
+    	}
 	}catch (IOException e) {
-	e.printStackTrace();
+	    e.printStackTrace();
 	}finally{
+	    System.out.println("remove proxy server");
 		remove(thisIp,thisPort);
 	}
 	System.exit(0);
