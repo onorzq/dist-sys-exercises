@@ -31,4 +31,4 @@ use "javac [fileName]" to compile all the code <br/>
 (1)Launch Discovery server first using "java DisServer 5555" <br/>
 (2)Launch 3 ConvServer "java ConvServer [port number]" <br/>
 (3)Finally Launch ProxyServer (The proxy server will check all the connected ConvServer and register to the discovery server) using "java ProxyServer [port number]" <br/>
-(4) use terminal to connect to the discovery server and test
+(4) use terminal to connect to the discovery server and test "telnet 127.0.0.1 5555"
