@@ -19,8 +19,11 @@ On the client side,<br/>
 (2) Then use that ip and port number to send the actual request<br/>
 
 On the ConvServer and Proxy Server Side<br/>
-(1) Once the server is running, it will automatically register on the Discovery Server using "add [unit1] [unit2] [ip] [port number]" <br/>
+(1) Once the server is running, it will automatically register on the Discovery Server. You can also use "add [unit1] [unit2] 127.0.0.1 [port number]" on Discovery Server to add new server. <br/>
+(2) If the server is shut down, it will send a REMOVE request to the discovery server to remove itself.<br/>
 
+On the discovery server side,<br/>
+When the "LOOKUP" protocol is used, before the discovery server return the specific ip address, it will check if that server is available. If not, it will remove it from the table on the discovery server rather than return user a unavailable server<br/>
 
 If you have extended the protocol in some way, explain how <br/>
 -------------
