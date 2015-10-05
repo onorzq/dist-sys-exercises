@@ -38,6 +38,9 @@ public class ConvServer {
 
         System.out.println("Received message: " + userInput);
         //--TODO: add your converting functions here, msg = func(userInput);
+        if(userInput.equalsIgnoreCase("test")){
+            return;
+        }
         out.println(inchToCm(userInput));
         // close IO streams, then socket
         out.close();

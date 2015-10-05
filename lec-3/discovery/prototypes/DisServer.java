@@ -74,7 +74,10 @@ public class DisServer {
         		Socket sc = null;
                         try {
                               	sc = new Socket(r.ip, Integer.parseInt(r.port));
+                              	PrintWriter o = new PrintWriter(sc.getOutputStream(), true);
+                                o.println("test");
                               	sc.close();
+                              	o.close();
                         	result.add(r);            
                            } catch(Exception e) {
                         	e.printStackTrace();

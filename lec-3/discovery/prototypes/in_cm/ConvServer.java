@@ -29,6 +29,7 @@ public class ConvServer {
         /* read and print the client's request */
         // readLine() blocks until the server receives a new line from client
         String userInput;
+        
         if ((userInput = in.readLine()) == null) {
             System.out.println("Error reading message");
             out.close();
@@ -38,6 +39,9 @@ public class ConvServer {
 
         System.out.println("Received message: " + userInput);
         //--TODO: add your converting functions here, msg = func(userInput);
+        if(userInput.equalsIgnoreCase("test")){
+            return;
+        }
         out.println(inchToCm(userInput));
         // close IO streams, then socket
         out.close();
