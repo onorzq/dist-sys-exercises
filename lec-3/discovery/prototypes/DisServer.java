@@ -68,7 +68,8 @@ public class DisServer {
         if(temp[0].equalsIgnoreCase("lookup")){
         	ArrayList<Record> result=new ArrayList<Record>();
         	String res="";
-        	for(Record r:recordArray){
+        	for(int ii=0;ii<recordArray.size();ii++){
+        	    Record r=recordArray.get(ii);
         		if((r.from.equalsIgnoreCase(temp[1])&&r.to.equalsIgnoreCase(temp[2]))||
         				(r.to.equalsIgnoreCase(temp[1])&&r.from.equalsIgnoreCase(temp[2]))){
         		Socket sc = null;
@@ -82,6 +83,7 @@ public class DisServer {
                            } catch(Exception e) {
                         	e.printStackTrace();
                             	recordArray.remove(r);
+                            	ii--;
                                System.out.println(r.to + "have shuted down");
                             }
         		}
