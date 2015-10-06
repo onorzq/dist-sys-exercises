@@ -96,7 +96,7 @@ public class DisServer {
         		res+=r.ip+" "+r.port;
         			break;
         		}
-        	}else{res="null";}
+        	}else{res="none";}
         	out.println(res);
         }
         

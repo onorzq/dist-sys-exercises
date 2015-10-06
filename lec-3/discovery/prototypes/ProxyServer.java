@@ -211,7 +211,7 @@ public static boolean register(String ip,int port){
 		String s=in.readLine();
 		System.out.println("s:"+s);
 		boolean flag=true;
-	if(!s.equalsIgnoreCase("null")){
+	if(!s.equalsIgnoreCase("none")){
 		String[] temp=s.split(" ");
 		convServerIp[0]=temp[0];
 		convServerPort[0]=Integer.parseInt(temp[1]);
@@ -223,7 +223,7 @@ public static boolean register(String ip,int port){
 	out.println("lookup in cm");
 	s=in.readLine();
 	System.out.println("s:"+s);
-	if(!s.equalsIgnoreCase("null")){
+	if(!s.equalsIgnoreCase("none")){
 		String[] temp=s.split(" ");
 		convServerIp[1]=temp[0];
 		convServerPort[1]=Integer.parseInt(temp[1]);
@@ -235,7 +235,7 @@ public static boolean register(String ip,int port){
 	out.println("lookup cm m");
 	s=in.readLine();
 	System.out.println("s:"+s);
-	if(!s.equalsIgnoreCase("null")){
+	if(!s.equalsIgnoreCase("none")){
 	String[] temp=s.split(" ");
 	convServerIp[2]=temp[0];
 	convServerPort[2]=Integer.parseInt(temp[1]);
